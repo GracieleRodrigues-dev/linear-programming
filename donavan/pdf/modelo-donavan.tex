@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[ddmmyyyy]{datetime2} 
+
+\begin{document}
+
+\title{Modelo Matemático - Problema Transporte de Grãos Donovan T\&T}
+\author{Graciele Rodrigues}
+\date{22/09/2024}
+\maketitle
+
+
+\section*{Problema}
+
+A Donovan T\&T é uma transportadora sediada em Oakwood, nos Estados Unidos. A empresa é especializada no transporte de grãos (milho, soja, feijão, etc.) por caminhões. Recentemente, a diretoria percebeu que sua receita está estagnada, e estuda alternativas para aumentar o faturamento. Uma delas é garantir as melhores escolhas na hora de planejar o transporte a ser realizado por um caminhão. Ajude a empresa nessa tarefa!
+
+O caminhão possui uma capacidade de transporte (em t) e um volume máximo (em m3). Há diferentes tipos de grãos a serem transportados. Cada tipo possui uma densidade (em t/m3), um volume máximo que pode ser transportado (em m3), definido pela legislação do estado, e uma receita esperada (em \$/m3).
+
+Construa um modelo de programação linear para decidir quanto de cada grão transportar (m3), visando aumentar a receita da empresa.
+
+\subsection*{Modelo Matemático}
+
+\textbf{Dados:}
+\begin{itemize}
+    \item $G$: Conjunto de grãos.
+    \item $V_g$: Volume máximo de cada grão $g \in G$ (m³).
+    \item $D_g$: Densidade de cada grão $g \in G$ (t/m³).
+    \item $R_g$: Receita esperada de cada grão $g \in G$ (\$/m³).
+    \item $V_{max}$: Volume total disponível no caminhão (m³).
+    \item $T_{max}$: Capacidade total do caminhão (t).
+\end{itemize}
+
+\textbf{Variáveis de decisão:}
+\begin{itemize}
+    \item $x_g$, $\forall g \in G$: Volume de cada grão $g \in G$ a ser transportado (m³).
+\end{itemize}
+
+\textbf{Função Objetivo:}
+\[
+\text{maximiza} \quad z = \sum_{g \in G} R_g \cdot x_g
+\]
+
+\textbf{Restrições:}
+\begin{align*}
+    &\sum_{g \in G} x_g \leq V_{max} \quad \text{(Capacidade de volume do caminhão não pode ser ultrapassada)} \\
+    &\sum_{g \in G} D_g \cdot x_g \leq T_{max} \quad \text{(Capacidade de peso do caminhão não pode ser ultrapassada)} \\
+    &x_g \leq V_g, \quad \forall g \in G \quad \text{(Limite de volume por grão não pode ser ultrapassado)} \\
+    &x_g \geq 0, \quad \forall g \in G \quad \text{(Não negatividade)}
+\end{align*}
+
+\end{document}
